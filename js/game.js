@@ -9,6 +9,8 @@ window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
 });
 
+document.getElementById("stats").innerText = "Game Running";
+
 const camera = {
     x: 0,
     y: 0
@@ -16,19 +18,21 @@ const camera = {
 
 const keys = {};
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", (e) => {
     keys[e.key.toLowerCase()] = true;
 });
 
-document.addEventListener("keyup", e => {
+document.addEventListener("keyup", (e) => {
     keys[e.key.toLowerCase()] = false;
 });
 
 const playerSprite = new Image();
-playerSprite.src = "assets/11E20DE3-1439-4D6D-9EBA-CD876437ABE4.png";
+playerSprite.src =
+    "assets/11E20DE3-1439-4D6D-9EBA-CD876437ABE4.png";
 
 const grassTile = new Image();
-grassTile.src = "assets/CFB357FF-1A6E-4173-BFF4-D425926A38BF.png";
+grassTile.src =
+    "assets/CFB357FF-1A6E-4173-BFF4-D425926A38BF.png";
 
 const player = {
     x: 500,
@@ -57,6 +61,7 @@ for (let i = 0; i < 50; i++) {
 }
 
 function updatePlayer() {
+
     if (keys["w"]) player.y -= player.speed;
     if (keys["s"]) player.y += player.speed;
     if (keys["a"]) player.x -= player.speed;
@@ -67,23 +72,75 @@ function updatePlayer() {
 }
 
 function drawWorld() {
-    ctx.fillStyle = "#3aa655";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let x = -20; x < 100; x++) {
+
+        for (let y = -20; y < 100; y++) {
+
+            if (grassTile.complete) {
+
+                ctx.drawImage(
+                    grassTile,
+                    x * 64 - camera.x,
+                    y * 64 - camera.y,
+                    64,
+                    64
+                );
+
+            } else {
+
+                ctx.fillStyle = "#3aa655";
+
+                ctx.fillRect(
+                    x * 64 - camera.x,
+                    y * 64 - camera.y,
+                    64,
+                    64
+                );
+            }
+        }
+    }
 }
 
 function drawPlayer() {
-    ctx.fillStyle = "red";
-    ctx.fillRect(
-        player.x - camera.x,
-        player.y - camera.y,
-        64,
-        64
-    );
+
+    const screenX =
+        player.x - camera.x;
+
+    const screenY =
+        player.y - camera.y;
+
+    if (playerSprite.complete) {
+
+        ctx.drawImage(
+            playerSprite,
+            screenX,
+            screenY,
+            player.width,
+            player.height
+        );
+
+    } else {
+
+        ctx.fillStyle = "red";
+
+        ctx.fillRect(
+            screenX,
+            screenY,
+            player.width,
+            player.height
+        );
+    }
 }
+
 function drawMonsters() {
+
     monsters.forEach(monster => {
+
         ctx.fillStyle = "gold";
+
         ctx.beginPath();
+
         ctx.arc(
             monster.x - camera.x,
             monster.y - camera.y,
@@ -91,19 +148,36 @@ function drawMonsters() {
             0,
             Math.PI * 2
         );
+
         ctx.fill();
     });
 }
 
 function drawUI() {
+
     ctx.fillStyle = "rgba(0,0,0,.6)";
     ctx.fillRect(10, 10, 250, 120);
 
     ctx.fillStyle = "white";
     ctx.font = "20px Arial";
-    ctx.fillText("Level: " + player.level, 20, 40);
-    ctx.fillText("Gold: " + player.gold, 20, 70);
-    ctx.fillText("Monsters: " + monsters.length, 20, 100);
+
+    ctx.fillText(
+        "Level: " + player.level,
+        20,
+        40
+    );
+
+    ctx.fillText(
+        "Gold: " + player.gold,
+        20,
+        70
+    );
+
+    ctx.fillText(
+        "Monsters: " + monsters.length,
+        20,
+        100
+    );
 }
 
 function update() {
@@ -111,17 +185,25 @@ function update() {
 }
 
 function render() {
-    ctx.fillStyle = "blue";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "white";
-    ctx.font = "40px Arial";
-    ctx.fillText("GAME RUNNING", 50, 100);
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    drawWorld();
+    drawMonsters();
+    drawPlayer();
+    drawUI();
 }
 
 function gameLoop() {
+
     update();
     render();
+
     requestAnimationFrame(gameLoop);
 }
 
