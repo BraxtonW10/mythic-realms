@@ -74,11 +74,9 @@ function updatePlayer() {
 function drawWorld() {
 
     for (let x = -20; x < 100; x++) {
-
         for (let y = -20; y < 100; y++) {
 
             if (grassTile.complete) {
-
                 ctx.drawImage(
                     grassTile,
                     x * 64 - camera.x,
@@ -86,11 +84,8 @@ function drawWorld() {
                     64,
                     64
                 );
-
             } else {
-
                 ctx.fillStyle = "#3aa655";
-
                 ctx.fillRect(
                     x * 64 - camera.x,
                     y * 64 - camera.y,
@@ -100,6 +95,101 @@ function drawWorld() {
             }
         }
     }
+
+    ctx.fillStyle = "#b8a17a";
+
+    ctx.fillRect(
+        -camera.x,
+        10 * 64 - camera.y,
+        5000,
+        64
+    );
+
+    WORLD.buildings.forEach(building => {
+
+        let color = "#8b4513";
+
+        if (building.type === "lab") color = "#dddddd";
+        if (building.type === "shop") color = "#ffd700";
+        if (building.type === "quest") color = "#00ccff";
+        if (building.type === "gym") color = "#cc0000";
+
+        ctx.fillStyle = color;
+
+        ctx.fillRect(
+            building.x * 64 - camera.x,
+            building.y * 64 - camera.y,
+            96,
+            96
+        );
+    });
+
+    WORLD.towns.forEach(town => {
+
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+
+        ctx.fillText(
+            town.name,
+            town.x * 64 - camera.x,
+            town.y * 64 - camera.y - 20
+        );
+    });
+}
+
+    // Road from Evergreen to Stonehaven
+    ctx.fillStyle = "#b8a17a";
+
+    ctx.fillRect(
+        -camera.x,
+        10 * 64 - camera.y,
+        5000,
+        64
+    );
+
+    // Buildings
+    WORLD.buildings.forEach(building => {
+
+        let color = "#8b4513";
+
+        if (building.type === "lab") {
+            color = "#dddddd";
+        }
+
+        if (building.type === "shop") {
+            color = "#ffd700";
+        }
+
+        if (building.type === "quest") {
+            color = "#00ccff";
+        }
+
+        if (building.type === "gym") {
+            color = "#cc0000";
+        }
+
+        ctx.fillStyle = color;
+
+        ctx.fillRect(
+            building.x * 64 - camera.x,
+            building.y * 64 - camera.y,
+            96,
+            96
+        );
+    });
+
+    // Town markers
+    WORLD.towns.forEach(town => {
+
+        ctx.fillStyle = "white";
+        ctx.font = "20px Arial";
+
+        ctx.fillText(
+            town.name,
+            town.x * 64 - camera.x,
+            town.y * 64 - camera.y - 20
+        );
+    });
 }
 
 function drawPlayer() {
