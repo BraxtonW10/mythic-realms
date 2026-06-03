@@ -35,30 +35,3 @@ document.addEventListener("keyup", (e) => {
     if (key === "a") keys.left = false;
     if (key === "d") keys.right = false;
 });
-
-function updatePlayer() {
-    if (keys.up) player.y -= player.speed;
-    if (keys.down) player.y += player.speed;
-    if (keys.left) player.x -= player.speed;
-    if (keys.right) player.x += player.speed;
-}
-
-function drawPlayer(ctx, camera) {
-    if (playerSprite.complete) {
-        ctx.drawImage(
-            playerSprite,
-            player.x - camera.x,
-            player.y - camera.y,
-            player.width,
-            player.height
-        );
-    } else {
-        ctx.fillStyle = "red";
-        ctx.fillRect(
-            player.x - camera.x,
-            player.y - camera.y,
-            player.width,
-            player.height
-        );
-    }
-}
