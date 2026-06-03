@@ -7,10 +7,36 @@ towns: [
 {
 name: "Evergreen Town",
 x: 8,
-y: 8
+y: 8,
+type: "starter"
 },
 
 {
+name: "Stonehaven City",
+x: 25,
+y: 12,
+type: "city"
+},
+
+{
+name: "Crystal Port",
+x: 42,
+y: 18,
+type: "port"
+}
+
+],
+
+npcs: [
+
+{
+name: "Professor Alder",
+x: 10,
+y: 8,
+message: "Welcome to Mythic Realms!"
+}
+
+],
 name: "Stonehaven City",
 x: 25,
 y: 12
