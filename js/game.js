@@ -25,10 +25,10 @@ document.addEventListener("keyup", e => {
 });
 
 const playerSprite = new Image();
-playerSprite.src = "assets/player.png";
+playerSprite.src = "assets/11E20DE3-1439-4D6D-9EBA-CD876437ABE4.png";
 
 const grassTile = new Image();
-grassTile.src = "assets/grass.png";
+grassTile.src = "assets/CFB357FF-1A6E-4173-BFF4-D425926A38BF.png";
 
 const player = {
     x: 500,
