@@ -5,12 +5,13 @@ y: 8,
 
 speed: 0.15,
 
-width: 32,
-height: 32,
-
-color: "#ff4444"
+width: 48,
+height: 48
 
 };
+
+const playerSprite = new Image();
+playerSprite.src = "assets/player.png";
 
 const keys = {
 
