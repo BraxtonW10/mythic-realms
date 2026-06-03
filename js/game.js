@@ -67,29 +67,19 @@ function updatePlayer() {
 }
 
 function drawWorld() {
-    for (let x = -10; x < 100; x++) {
-        for (let y = -10; y < 100; y++) {
-            ctx.drawImage(
-                grassTile,
-                x * 64 - camera.x,
-                y * 64 - camera.y,
-                64,
-                64
-            );
-        }
-    }
+    ctx.fillStyle = "#3aa655";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawPlayer() {
-    ctx.drawImage(
-        playerSprite,
+    ctx.fillStyle = "red";
+    ctx.fillRect(
         player.x - camera.x,
         player.y - camera.y,
-        player.width,
-        player.height
+        64,
+        64
     );
 }
-
 function drawMonsters() {
     monsters.forEach(monster => {
         ctx.fillStyle = "gold";
