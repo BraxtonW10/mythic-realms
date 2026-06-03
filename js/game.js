@@ -170,6 +170,7 @@ drawPlayer();
 }
 
 gameLoop();
+alert("game.js loaded");
 document
 .getElementById("interact")
 .addEventListener("click",()=>{
