@@ -208,3 +208,44 @@ function gameLoop() {
 }
 
 gameLoop();
+const joystick = document.getElementById("joystick");
+const stick = document.getElementById("stick");
+
+let touching = false;
+
+joystick.addEventListener("touchstart", (e) => {
+    touching = true;
+});
+
+joystick.addEventListener("touchend", (e) => {
+    touching = false;
+
+    keys["w"] = false;
+    keys["a"] = false;
+    keys["s"] = false;
+    keys["d"] = false;
+
+    stick.style.left = "35px";
+    stick.style.top = "35px";
+});
+
+joystick.addEventListener("touchmove", (e) => {
+
+    e.preventDefault();
+
+    const rect = joystick.getBoundingClientRect();
+
+    const x = e.touches[0].clientX - rect.left - 60;
+    const y = e.touches[0].clientY - rect.top - 60;
+
+    keys["w"] = y < -20;
+    keys["s"] = y > 20;
+    keys["a"] = x < -20;
+    keys["d"] = x > 20;
+
+    stick.style.left =
+        Math.max(10, Math.min(60, x + 35)) + "px";
+
+    stick.style.top =
+        Math.max(10, Math.min(60, y + 35)) + "px";
+});
