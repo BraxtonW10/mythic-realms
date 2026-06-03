@@ -170,3 +170,27 @@ drawPlayer();
 }
 
 gameLoop();
+document
+.getElementById("interact")
+.addEventListener("click",()=>{
+
+    WORLD.npcs.forEach(npc=>{
+
+        const dx = Math.abs(player.x - npc.x);
+        const dy = Math.abs(player.y - npc.y);
+
+        if(dx < 2 && dy < 2){
+
+            document
+            .getElementById("dialogue")
+            .classList.remove("hidden");
+
+            document
+            .getElementById("dialogueText")
+            .textContent = npc.message;
+
+        }
+
+    });
+
+});
