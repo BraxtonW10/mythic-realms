@@ -1,44 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mythic Realms</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
+#game {
+    display: block;
+}
+
+#hud {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
+    background: rgba(0,0,0,.5);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+#joystick {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.2);
+    z-index: 100;
+}
+
+#stick {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 35px;
+    top: 35px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.6);
+}
+
+#captureBtn {
+    position: fixed;
+    right: 40px;
+    bottom: 50px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: none;
+    font-size: 18px;
+    background: gold;
+    z-index: 100;
+}
+</style>
 </head>
+
 <body>
 
 <div id="hud">
-    <div id="gameTitle">MYTHIC REALMS</div>
-    <div id="location">Evergreen Town</div>
+    <div>Mythic Realms</div>
+    <div id="stats">Loading...</div>
 </div>
 
 <canvas id="game"></canvas>
 
-<div id="dialogue" class="hidden">
-    <div id="dialogueText">
-        Welcome to Mythic Realms.
-    </div>
+<div id="joystick">
+    <div id="stick"></div>
 </div>
 
-<div id="controls">
+<button id="captureBtn">Catch</button>
 
-    <div class="row">
-        <button id="up">▲</button>
-    </div>
-
-    <div class="row">
-        <button id="left">◀</button>
-        <button id="down">▼</button>
-        <button id="right">▶</button>
-    </div>
-<button id="interact">A</button>
-</div>
-
-<script src="js/world.js"></script>
-<script src="js/player.js"></script>
-<script src="js/game.js"></script>
+<script src="game.js"></script>
 
 </body>
 </html>
