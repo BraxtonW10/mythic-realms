@@ -161,8 +161,9 @@ function gameLoop(){
     );
 
     drawMap();
-    drawTowns();
-    drawPlayer();
+drawTowns();
+drawNPCs();
+drawPlayer();
 
     requestAnimationFrame(gameLoop);
 
