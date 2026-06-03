@@ -111,12 +111,12 @@ function update() {
 }
 
 function render() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawWorld();
-    drawMonsters();
-    drawPlayer();
-    drawUI();
+    ctx.fillStyle = "white";
+    ctx.font = "40px Arial";
+    ctx.fillText("GAME RUNNING", 50, 100);
 }
 
 function gameLoop() {
