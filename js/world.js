@@ -37,18 +37,6 @@ message: "Welcome to Mythic Realms!"
 }
 
 ],
-name: "Stonehaven City",
-x: 25,
-y: 12
-},
-
-{
-name: "Crystal Port",
-x: 42,
-y: 18
-}
-
-],
 
 map: [
 
