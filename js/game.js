@@ -100,7 +100,22 @@ function drawTowns(){
     });
 
 }
+function drawNPCs(){
 
+    WORLD.npcs.forEach(npc=>{
+
+        ctx.fillStyle = "#663399";
+
+        ctx.fillRect(
+            npc.x * WORLD.tileSize,
+            npc.y * WORLD.tileSize,
+            32,
+            32
+        );
+
+    });
+
+}
 function drawPlayer(){
 
     ctx.fillStyle = player.color;
